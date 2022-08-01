@@ -5,13 +5,13 @@ const todoSchema = new mongoose.Schema({
     title: {
         type: String,
         minLength: [0, 'A title can not be blank'],
-        require: true
+        required: true
     },
     description: String,
     status: {
         type: String,
         enum: ['TODO','DOING','DONE'],
-        require: true,
+        required: true,
     },
     startAt: {
         type: Date,
