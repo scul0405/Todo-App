@@ -16,8 +16,8 @@ app.use(express.json())
 
 
 // Set default route
-app.use('/api/users',userRouter)
-app.use('/api/todos', todoRouter)
+app.use('/api/v1/users',userRouter)
+app.use('/api/v1/todos', todoRouter)
 
 
 // Handle when go to undefined route
