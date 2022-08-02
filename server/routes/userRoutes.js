@@ -5,7 +5,7 @@ const {logIn} = require('../controllers/authenticationController')
 const userRouter = express.Router();
 
 userRouter.route('/login').post(logIn)
-userRouter.route('/').post(createAUser)
+userRouter.route('/signup').post(createAUser)
 
 userRouter.route('/:id').get(getAUser)
 
