@@ -1,5 +1,7 @@
 const User = require('../models/userModel')
 const catchAsync = require('../utils/catchAsync')
+const signToken = require('../utils/signToken')
+
 
 exports.getAUser  = catchAsync(async (req,res,next) => {
     const user = await User.findById(req.params.id);
@@ -14,13 +16,16 @@ exports.getAUser  = catchAsync(async (req,res,next) => {
 
 exports.createAUser = catchAsync(async (req,res,next) => {
     const user = await User.create({
-        userName : req.body.userName,
+        username : req.body.username,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm
     })
-    console.log(user)
+
+    const token = signToken(user._id);
+
     res.status(200).json({
         status: 'success',
+        token,
         data: {
             user
         }
