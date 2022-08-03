@@ -1,10 +1,15 @@
-import './App.css';
+import React from "react";
+import {Route, Routes} from 'react-router-dom'
+import Landing from "./components/layout/Landing";
+import Authentication from "./views/Authentication";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="">Hello world</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/login" element={<Authentication authRoute='login'/>}/>
+      <Route path="/register" element={<Authentication authRoute='register'/>}/>
+    </Routes>
   );
 }
 
