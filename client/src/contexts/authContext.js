@@ -46,6 +46,8 @@ export const AuthContextProvider = ({children}) => {
             const response = await axios.post(`${apiUrl}/users/login`,loginForm)
             if (response.data.status === 'success')
                 localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, response.data.token)
+
+            await loadUser() // to set isAuthenticated to true -> get access to dashboard
             return response.data
         }
         catch (err){
