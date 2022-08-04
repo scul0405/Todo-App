@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react'
 import InputForm from '../inputForm/InputForm'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { AuthContext } from '../../contexts/authContext'
 
 const LoginForm = () => {
+
+  let navigate = useNavigate();
   
   const {loginUser} = useContext(AuthContext)
 
@@ -21,6 +23,10 @@ const LoginForm = () => {
   const handleLogin = async () => {
     try {
       const loginData = await loginUser(form)
+      if (loginData.status === 'success')
+        navigate('/dashboard',{
+          replace: true
+        })
       console.log(loginData)      
     } catch (error) {
       console.log(error)

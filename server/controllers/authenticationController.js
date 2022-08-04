@@ -45,3 +45,25 @@ exports.protect = catchAsync(async (req,res,next) => {
     next();
         
 })
+
+// ONLY for FE when get user by token from local storage
+exports.verify = catchAsync(async (req,res,next) => {
+    let token;
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer'))
+        token = req.headers.authorization.split(' ')[1];
+    if (!token)
+        return next()
+    // Verify token
+    const decoded = await promisify(jwt.verify)(token,process.env.JWT_SECRET);
+    // get user and check is exist
+    const user = await User.findById(decoded.id);
+    if (!user)
+        return next()   
+    // Send user to next action
+    res.status(200).json({
+        status: 'success',
+        data: {
+            user
+        }
+    })
+})
