@@ -31,11 +31,12 @@ module.exports = (err, req,res, next) => {
     err.status = err.status || 'error';
     
     if (process.env.NODE_ENV === 'production'){
-        
         if (err.name === 'CastError')
-            err = new AppError(`Invalid ${err.path}: ${err.value}`,400);
+            err = new AppError(400,`Invalid ${err.path}: ${err.value}`);
         if (err.code === 11000)
-            err = new AppError(`Duplicate field value`, 400)
+            err = new AppError(400,`Duplicate field value`)
+        if (err.message.startsWith('User validation failed: passwordConfirm'))
+            err = new AppError(400, 'Wrong password confirm !')
         sendErrorProd(err,res);
     }
     else if (process.env.NODE_ENV === 'development')

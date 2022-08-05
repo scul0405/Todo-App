@@ -59,8 +59,25 @@ export const AuthContextProvider = ({children}) => {
         }
     }
 
+    // register user
+    const registerUser = async (registerForm) => {
+        try {
+            const response = await axios.post(`${apiUrl}/users/signup`, registerForm)
+            if (response.data.status === 'success')
+                localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, response.data.token)
+            await loadUser()
+            return response.data
+        }
+        catch(err) {
+            if (err.response.data)
+                return err.response.data
+            else
+                return {status: 'failed', message: err.message}
+        }
+    } 
+
     //Context data
-    const authContextData = {loginUser, authState}
+    const authContextData = {loginUser, registerUser, authState}
 
     return (
         <AuthContext.Provider value={authContextData}>{children}</AuthContext.Provider>
