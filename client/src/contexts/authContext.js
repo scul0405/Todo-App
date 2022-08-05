@@ -23,7 +23,7 @@ export const AuthContextProvider = ({children}) => {
             if (response.data.status === 'success')
                 dispatch({
                     type: 'SET_AUTH',
-                    payload: { isAuthenticated: true, currentUser: response.data.user}
+                    payload: { isAuthenticated: true, currentUser: response.data.data.user}
                 })
         } catch (error) {
             localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
@@ -77,7 +77,7 @@ export const AuthContextProvider = ({children}) => {
     } 
 
     //Context data
-    const authContextData = {loginUser, registerUser, authState}
+    const authContextData = {loginUser, registerUser,authState}
 
     return (
         <AuthContext.Provider value={authContextData}>{children}</AuthContext.Provider>
