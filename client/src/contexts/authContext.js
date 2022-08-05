@@ -1,9 +1,8 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import { authReducer } from "../reducers/authReducer";
 import axios from "axios";
 import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from "./constants";
 import setAuthToken from '../utils/setAuthToken'
-import { useEffect } from "react";
 
 export const AuthContext = createContext()
 
@@ -76,8 +75,16 @@ export const AuthContextProvider = ({children}) => {
         }
     } 
 
+    const logoutUser = () => {
+        localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME)
+        dispatch({
+            type: 'SET_AUTH',
+            payload: {isAuthenticated: false, currentUser: null}
+        })
+    }
+
     //Context data
-    const authContextData = {loginUser, registerUser,authState}
+    const authContextData = {loginUser, logoutUser, registerUser,authState}
 
     return (
         <AuthContext.Provider value={authContextData}>{children}</AuthContext.Provider>

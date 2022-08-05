@@ -4,11 +4,11 @@ import pen from '../../assets/pen.svg'
 
 const Card = () => {
   return (
-    <div className='w-full border-2 border-r-8 border-green-300 rounded-lg bg-green-50'>
+    <div className='w-full border-2 border-r-8 border-green-300 rounded-lg bg-green-50 shadow-md'>
         <div className='py-2 px-4'>
             <div className='mb-2'>
                 <p className='text-green-600 text-2xl font-bold mb-2'>Learn Abc</p>
-                <p>Learning how to make an abc like ahfioawjefij nawfnioajwfieji jieoj aweijfojo janknejij nnzjoej jojane ...</p>
+                <p className='text-gray-700'>Learning how to make an abc like ahfioawjefij nawfnioajwfieji jieoj aweijfojo janknejij nnzjoej jojane ...</p>
             </div>
             <div className='icon-box flex justify-between'>
                 <div className='flex items-center'>
@@ -18,7 +18,7 @@ const Card = () => {
                         DOING
                     </span>
                 </div>
-                <div className='flex mr-8'>
+                <div className='flex mr-2'>
                     <div className='w-6 h-6 mr-6 cursor-pointer'>
                         <img src={pen} alt="change" />
                     </div>

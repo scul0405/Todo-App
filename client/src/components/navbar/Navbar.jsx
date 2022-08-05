@@ -6,7 +6,7 @@ import Logout from '../../assets/log-out.svg'
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/authContext'
 const Navbar = () => {
-    const {authState: {currentUser}} = useContext(AuthContext)
+    const {authState: {currentUser}, logoutUser} = useContext(AuthContext)
   return (
     <nav className='nav-bar bg-blue-50 w-full h-20 flex items-center justify-between px-4 md:px-8'>
         <Link className=' w-14 h-14' to='/dashboard'>
@@ -17,13 +17,13 @@ const Navbar = () => {
                 <p>{`Hey ${currentUser.username}, how are you today ?`}</p>
                 <p className='hidden md:block'>Wish you have a nice day !</p>
             </div>
-            <div className='w-8 h-8 hover:bg-yellow-200'>
+            <div className='w-8 h-8 mx-2 hover:bg-yellow-200 hover:scale-105 duration-200'>
                 <img className='fill' src={Happy} alt="happy" />
             </div>
         </div>
-        <div className='w-8 h-8 cursor-pointer'>
+        <button onClick={logoutUser} className='w-8 h-8 cursor-pointer'>
             <img className='w-full h-full' src={Logout} alt="Logout" />
-        </div>
+        </button>
     </nav>
   )
 }
