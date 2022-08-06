@@ -10,7 +10,7 @@ const todoSchema = new mongoose.Schema({
     description: String,
     status: {
         type: String,
-        enum: ['TODO','DOING','DONE'],
+        enum: ['TO DO','DOING','DONE'],
         required: true,
     },
     startAt: {

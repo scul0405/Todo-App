@@ -1,5 +1,5 @@
 import {TODOS_LOADED_SUCCESS,TODOS_LOADED_FAIL,CREATE_TODO,UPDATE_TODO,DELETE_TODO, SORT_TODOS} from '../contexts/constants'
-import { createContext, useContext,useReducer } from "react";
+import { createContext, useState,useReducer } from "react";
 import { todoReducer } from "../reducers/todoReducer";
 import axios from "axios";
 import { apiUrl } from "./constants";
@@ -11,6 +11,9 @@ export const TodoContextProvider = ({children}) => {
         todosLoading: true,
         todos: []
     })
+
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
 
     const getTodos = async () => {
         try {
@@ -24,7 +27,19 @@ export const TodoContextProvider = ({children}) => {
         
     }
 
-    const todoContextData = {getTodos, todoState}
+    const createTodo = async (createForm) => {
+        try {
+            const response = await axios.post(`${apiUrl}/todos`,createForm)
+            if (response.data.status === 'success')
+                dispatch({type: CREATE_TODO, payload: response.data.data.todo})
+            console.log(response)
+        }
+        catch(error){
+            throw new Error(error.message)
+        }
+    }
+
+    const todoContextData = {getTodos, todoState, createTodo, showAddModal, setShowAddModal, showUpdateModal, setShowUpdateModal}
     return (
         <TodoContext.Provider value={todoContextData}>{children}</TodoContext.Provider>
     )

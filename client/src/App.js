@@ -11,7 +11,7 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Authentication authRoute='login'/>}/>
       <Route path="/register" element={<Authentication authRoute='register'/>}/>
-      <Route path='/dashboard' element={<ProtectedRoute component={<Dashboard />}/>}>
+      <Route path='/dashboard' element={<ProtectedRoute component={Dashboard}/>}>
       </Route>
     </Routes>
   );

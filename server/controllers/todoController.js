@@ -5,7 +5,7 @@ const ApiFeatures = require('../utils/ApiFeatures')
 exports.getAllTodos = catchAsync(async (req,res,next) => {
     // Only get all todos match with login user
     // Filter, sort and paginate if query have these
-    const features = new ApiFeatures(Todo.find({username: req.user._id}),req.query)
+    const features = new ApiFeatures(Todo.find({user: req.user._id}),req.query)
          .filter()
          .sort()
          .pagination()
@@ -59,6 +59,9 @@ exports.updateATodo = catchAsync(async (req,res,next) => {
 
     res.status(200).json({
         status: 'success',
+        data: {
+            todo
+        }
     })
 })
 

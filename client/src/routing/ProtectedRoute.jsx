@@ -3,6 +3,7 @@ import { AuthContext } from '../contexts/authContext'
 import { Navigate } from 'react-router'
 import Spinner from '../components/spinner/Spinner'
 import { useContext } from 'react'
+import Navbar from '../components/navbar/Navbar'
 
 
 const ProtectedRoute = ({component : Component}) => {
@@ -14,7 +15,13 @@ const ProtectedRoute = ({component : Component}) => {
             </div>
         )
   return (
-    isAuthenticated ? Component : <Navigate to='/login' />
+    isAuthenticated ? (
+      <>
+        <Navbar />
+        <Component />
+      </>
+    )
+      : <Navigate to='/login' />
   )
 }
 

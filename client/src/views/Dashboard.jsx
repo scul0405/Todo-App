@@ -1,28 +1,43 @@
 import React from 'react'
-import Navbar from '../components/navbar/Navbar'
 import Card from '../components/card/Card'
 import { useContext, useState } from 'react'
 import { TodoContext } from '../contexts/todoContext'
 import { useEffect } from 'react'
+import AddTodo from '../components/addTodo/AddTodo'
+import Spinner from '../components/spinner/Spinner'
+
 const Dashboard = () => {
   // get todos
-  const {getTodos, todoState: { todos }} = useContext(TodoContext);
+  const {getTodos, todoState: { todos, todosLoading }} = useContext(TodoContext);
   useEffect(() => {
     getTodos()
   }, [])
+
+  let body
+
+  if (todosLoading) {
+    body = <Spinner />
+  }
+  else if (todos.length !== 0){
+    body = (
+      <div className='px-8 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+          {todos.map(todo => <Card todo={todo} key={todo.startAt}/>)}
+      </div>
+    )
+  }
+  else
+    body = (
+      <div className='flex flex-col items-center text-2xl text-center sm:text-3xl text-gray-500 font-medium p-6'>
+        <p>Welcome to my Todo App</p>
+        <p>To using, click the create button at the bottom right corner</p>
+      </div>
+    )
   
 
   return (
-
     <div>
-      <Navbar />
-      <div className='px-8 py-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
+        {body} 
+      <AddTodo />
     </div>
   )
 }

@@ -8,7 +8,8 @@ export const todoReducer = (state, action) => {
             return {...state, todos: payload, todosLoading: false}
         case TODOS_LOADED_FAIL:
             return {...state, payload: [], todosLoading: false}
-        
+        case CREATE_TODO:
+            return {...state, todos: [...state.todos, payload]}
         default:
             return state;
     }
