@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'short' : {'raw': '(max-height: 768px) and (max-width: 1024px)'}
+        'short' : {'raw': '(max-height: 768px) and (max-width: 1024px)'},
+        'mobile' : {'raw': '(max-width: 360px)'}
       }
     },
   },

@@ -66,7 +66,7 @@ const AddTodo = () => {
                             </div>
                             <div className='my-4'>
                                 <label className='block italic font-semibold text-sky-700' htmlFor="description">Description</label>
-                                <textarea onChange={handleFormChange} className='border-2 rounded-md pl-2' rows="5" cols="35" name='description' id='description' value={description} required />
+                                <textarea onChange={handleFormChange} className='border-2 rounded-md pl-2 mobile:w-[14rem]' rows="5" cols="35" name='description' id='description' value={description} required />
                             </div>
                             <div className='my-4'>
                                 <label className=' italic font-semibold text-sky-700' htmlFor='status'>Status : </label>
