@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "build" : "cd ../client && npm run build",
+    "install-client": "cd ../client && npm install",
+    "install-server": "npm install",
+    "heroku-postbuild" : "npm install-server && npm run build && npm run install-client",
     "start:dev": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production& nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
