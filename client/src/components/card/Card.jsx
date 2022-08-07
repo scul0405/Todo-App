@@ -4,7 +4,7 @@ import trashBin from '../../assets/trash-bin.svg'
 import pen from '../../assets/pen.svg'
 
 const Card = ({ todo: {title, description, status, _id}}) => {
-    const {setShowUpdateModal, findUpdateTodo} = useContext(TodoContext)
+    const {setShowUpdateModal, findUpdateTodo, deleteTodo} = useContext(TodoContext)
     const color = status === 'TO DO' ? 'red' : status === 'DOING' ? 'yellow' : 'green'
     const handlePreUpdateData = () => {
         findUpdateTodo(_id)
@@ -42,7 +42,7 @@ const Card = ({ todo: {title, description, status, _id}}) => {
                     <div className='w-6 h-6 mr-6 cursor-pointer' onClick={handlePreUpdateData}>
                         <img src={pen} alt="change" />
                     </div>
-                    <div className='w-6 h-6 cursor-pointer'>
+                    <div onClick={() => deleteTodo(_id)} className='w-6 h-6 cursor-pointer'>
                         <img src={trashBin} alt="delete" />
                     </div>
                 </div>

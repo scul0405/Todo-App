@@ -17,6 +17,13 @@ export const todoReducer = (state, action) => {
                 const newTodos = state.todos.map(todo => todo._id === payload._id ? payload: todo)
                 return {...state, todos: newTodos}
             }
+        case DELETE_TODO:
+            {
+                const newTodos = state.todos.filter(todo => todo._id !== payload)
+                return {...state, todos: newTodos}
+            }
+        case SORT_TODOS:
+            return {...state, todos: payload}
         default:
             return state;
     }

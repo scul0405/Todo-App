@@ -12,7 +12,7 @@ const Dashboard = () => {
   const {getTodos, todoState: { todos, todosLoading, findTodo }} = useContext(TodoContext);
   useEffect(() => {
     getTodos()
-  }, [])
+  }, [todos])
 
   let body
 
