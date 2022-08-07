@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const app = express();
 const cors = require("cors");
+const path = require("path")
 const userRouter = require("./routes/userRoutes");
 const todoRouter = require("./routes/todoRoutes");
 const globalErrorHandler = require("./controllers/errorController");
