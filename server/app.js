@@ -13,8 +13,8 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 // middleware
 app.use(express.json());
-app.use(cors()); // fix port
-app.options('*',cors())
+// app.use(cors()); // fix port
+// app.options('*',cors())
 
 // Set default route
 app.use("/api/v1/users", userRouter);
