@@ -19,14 +19,6 @@ app.use(cors());
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/todos", todoRouter);
 
-if (process.env.NODE_ENV === 'production'){
-  // serve the static files from react app
-  app.use(express.static(path.join(__dirname, "../client/build")));
-  // Handles any requests that don't match the ones above
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(path.join(__dirname, "../client/build"), 'index.html'));
-  });
-}
 // Handle when go to undefined route
 app.all("*", (req, res, next) => {
   next(new AppError(404, `Can't find ${req.originalUrl} on this server !`));
