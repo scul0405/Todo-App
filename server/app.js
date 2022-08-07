@@ -14,8 +14,7 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 // middleware
 app.use(express.json());
-// app.use(cors()); // fix port
-// app.options('*',cors())
+app.use(cors());
 
 // Set default route
 app.use("/api/v1/users", userRouter);
@@ -28,13 +27,6 @@ app.use("/api/v1/todos", todoRouter);
 
 // Handle global error
 app.use(globalErrorHandler);
-
-// serve the static files from react app
-app.use(express.static(path.join(__dirname, "../client/build")));
-// Handles any requests that don't match the ones above
-app.get('*', (req, res) => {
-  res.sendFile(path.join(path.join(__dirname, "../client/build"), 'index.html'));
-}); 
 
 
 module.exports = app;
