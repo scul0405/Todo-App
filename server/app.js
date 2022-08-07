@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
   res.sendFile(path.join(path.join(__dirname, "../client/build"), 'index.html'));
-});
+}); 
 
 
 // middleware
@@ -30,9 +30,9 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/todos", todoRouter);
 
 // Handle when go to undefined route
-app.all("*", (req, res, next) => {
-  next(new AppError(404, `Can't find ${req.originalUrl} on this server !`));
-});
+// app.all("*", (req, res, next) => {
+//   next(new AppError(404, `Can't find ${req.originalUrl} on this server !`));
+// });
 
 // Handle global error
 app.use(globalErrorHandler);
