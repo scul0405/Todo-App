@@ -9,7 +9,7 @@ mongoose.connect(DB_URI,{
     useNewUrlParser: true
 }).then(() => {
     console.log('Connect to database successful !')
-})
+}).catch(error => throw new Error(error.message))
 
 const port = process.env.PORT || 5000
 app.listen(port, () => {
