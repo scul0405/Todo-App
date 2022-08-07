@@ -12,14 +12,6 @@ const AppError = require("./utils/appError");
 // set environment
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
-// serve the static files from react app
-app.use(express.static(path.join(__dirname, "../client/build")));
-// Handles any requests that don't match the ones above
-app.get('*', (req, res) => {
-  res.sendFile(path.join(path.join(__dirname, "../client/build"), 'index.html'));
-}); 
-
-
 // middleware
 app.use(express.json());
 // app.use(cors()); // fix port
@@ -36,5 +28,13 @@ app.use("/api/v1/todos", todoRouter);
 
 // Handle global error
 app.use(globalErrorHandler);
+
+// serve the static files from react app
+app.use(express.static(path.join(__dirname, "../client/build")));
+// Handles any requests that don't match the ones above
+app.get('*', (req, res) => {
+  res.sendFile(path.join(path.join(__dirname, "../client/build"), 'index.html'));
+}); 
+
 
 module.exports = app;
