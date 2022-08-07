@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {TodoContext} from '../../contexts/todoContext.js'
 import trashBin from '../../assets/trash-bin.svg'
 import pen from '../../assets/pen.svg'
 
-const Card = ({ todo: {title, description, status}}) => {
+const Card = ({ todo: {title, description, status, _id}}) => {
+    const {setShowUpdateModal, findUpdateTodo} = useContext(TodoContext)
     const color = status === 'TO DO' ? 'red' : status === 'DOING' ? 'yellow' : 'green'
+    const handlePreUpdateData = () => {
+        findUpdateTodo(_id)
+        setShowUpdateModal(true)
+    }
     const tailwindColorFixed = ( // fix tailwind color loaded
         <div>
             <div className='text-red-500 bg-red-50 border-red-300'>
@@ -33,7 +39,7 @@ const Card = ({ todo: {title, description, status}}) => {
                     </span>
                 </div>
                 <div className='flex mr-2'>
-                    <div className='w-6 h-6 mr-6 cursor-pointer'>
+                    <div className='w-6 h-6 mr-6 cursor-pointer' onClick={handlePreUpdateData}>
                         <img src={pen} alt="change" />
                     </div>
                     <div className='w-6 h-6 cursor-pointer'>

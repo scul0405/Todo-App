@@ -5,10 +5,11 @@ import { TodoContext } from '../contexts/todoContext'
 import { useEffect } from 'react'
 import AddTodo from '../components/addTodo/AddTodo'
 import Spinner from '../components/spinner/Spinner'
+import UpdateTodo from '../components/updateTodo/UpdateTodo'
 
 const Dashboard = () => {
   // get todos
-  const {getTodos, todoState: { todos, todosLoading }} = useContext(TodoContext);
+  const {getTodos, todoState: { todos, todosLoading, findTodo }} = useContext(TodoContext);
   useEffect(() => {
     getTodos()
   }, [])
@@ -21,7 +22,7 @@ const Dashboard = () => {
   else if (todos.length !== 0){
     body = (
       <div className='px-8 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-          {todos.map(todo => <Card todo={todo} key={todo.startAt}/>)}
+          {todos.map(todo => <Card todo={todo} key={todo._id}/>)}
       </div>
     )
   }
@@ -38,6 +39,7 @@ const Dashboard = () => {
     <div>
         {body} 
       <AddTodo />
+     {findTodo && <UpdateTodo />}
     </div>
   )
 }
