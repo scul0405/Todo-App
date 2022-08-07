@@ -19,7 +19,7 @@ class ApiFeatures {
             this.query = this.query.sort(sortBy);
         }
         else {
-            this.query.sort('-createAt')
+            this.query.sort('-startAt')
         }
         return this
     }
