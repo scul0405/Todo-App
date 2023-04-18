@@ -30,7 +30,7 @@ const Dashboard = () => {
     body = (
       <div className='flex flex-col items-center text-2xl text-center sm:text-3xl text-gray-500 font-medium p-6'>
         <p>Welcome to my Todo App</p>
-        <p>To using, click the create button at the bottom right corner</p>
+        <p>To use this app, click the create button at the bottom right corner</p>
       </div>
     )
   

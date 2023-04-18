@@ -4,6 +4,7 @@ import { Navigate } from 'react-router'
 import Spinner from '../components/spinner/Spinner'
 import { useContext } from 'react'
 import Navbar from '../components/navbar/Navbar'
+import Features from '../components/features/Features'
 
 
 const ProtectedRoute = ({component : Component}) => {
@@ -18,6 +19,7 @@ const ProtectedRoute = ({component : Component}) => {
     isAuthenticated ? (
       <>
         <Navbar />
+        <Features />
         <Component />
       </>
     )
